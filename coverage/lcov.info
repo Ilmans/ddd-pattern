@@ -64,7 +64,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:src/Domains/users/RegisterUser.js
+SF:src/Domains/users/entities/RegisterUser.js
 FN:2,(anonymous_0)
 FN:9,(anonymous_1)
 FNF:2
@@ -104,7 +104,7 @@ BRF:14
 BRH:14
 end_of_record
 TN:
-SF:src/Domains/users/RegisteredUser.js
+SF:src/Domains/users/entities/RegisteredUser.js
 FN:2,(anonymous_0)
 FN:12,(anonymous_1)
 FNF:2

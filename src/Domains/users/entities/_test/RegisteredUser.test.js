@@ -1,4 +1,4 @@
-const RegisteredUser = require("../../RegisteredUser");
+const RegisteredUser = require("../RegisteredUser");
 
 describe("a RegisteredUser entities", () => {
   it("should throw error when payload did not contain needed property", () => {
