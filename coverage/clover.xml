@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1720503178840" clover="3.2.0">
-  <project timestamp="1720503178840" name="All files">
-    <metrics statements="41" coveredstatements="41" conditionals="27" coveredconditionals="27" methods="8" coveredmethods="8" elements="76" coveredelements="76" complexity="0" loc="41" ncloc="41" packages="2" files="6" classes="6"/>
+<coverage generated="1720504117481" clover="3.2.0">
+  <project timestamp="1720504117481" name="All files">
+    <metrics statements="46" coveredstatements="46" conditionals="27" coveredconditionals="27" methods="11" coveredmethods="11" elements="84" coveredelements="84" complexity="0" loc="46" ncloc="46" packages="4" files="8" classes="8"/>
+    <package name="Applications.security">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="PasswordHash.js" path="/Users/ilmans/Documents/Learning/Expert Backend (dicoding)/Clean-arthitecture/src/Applications/security/PasswordHash.js">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+      </file>
+    </package>
     <package name="Commons.exceptions">
       <metrics statements="18" coveredstatements="18" conditionals="3" coveredconditionals="3" methods="4" coveredmethods="4"/>
       <file name="AuthenticationError.js" path="/Users/ilmans/Documents/Learning/Expert Backend (dicoding)/Clean-arthitecture/src/Commons/exceptions/AuthenticationError.js">
@@ -33,6 +41,15 @@
         <line num="5" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
         <line num="10" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="Domains.users">
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="UserRepository.js" path="/Users/ilmans/Documents/Learning/Expert Backend (dicoding)/Clean-arthitecture/src/Domains/users/UserRepository.js">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
       </file>
     </package>
     <package name="Domains.users.entities">
