@@ -15,4 +15,12 @@ const config = {
     database: process.env.PGDATABASE,
     port: process.env.PGPORT,
   },
+
+  app: {
+    host: process.env.NODE_ENV !== "production" ? "localhost" : "0.0.0.0",
+    port: process.env.PORT,
+    debug: process.env.NODE_ENV === "development" ? { request: ["error"] } : {},
+  },
 };
+
+module.exports = config;
