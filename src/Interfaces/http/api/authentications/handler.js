@@ -5,6 +5,7 @@ class AuthHandler {
     this._container = container;
 
     this.postAuthHandler = this.postAuthHandler.bind(this);
+    this.putAuthHandler = this.putAuthHandler.bind(this);
   }
 
   async postAuthHandler(request, h) {
@@ -22,5 +23,19 @@ class AuthHandler {
     response.code(201);
     return response;
   }
+
+  async putAuthHandler(request, h) {
+    const authUseCase = this._container.getInstance(AuthUseCase.name);
+    const newAccessToken = await authUseCase.renewRefreshToken(request.payload);
+    const response = h.response({
+      status: "success",
+      data: {
+        accessToken: newAccessToken,
+      },
+    });
+    response.code(201);
+    return response;
+  }
 }
+
 module.exports = AuthHandler;
