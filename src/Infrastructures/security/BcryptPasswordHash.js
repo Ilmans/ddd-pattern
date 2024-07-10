@@ -13,8 +13,9 @@ class BcryptPasswordHash extends PasswordHash {
   }
 
   async compare(password, hashedPassword) {
-    if (!this._bcrypt.compare(password, hashedPassword)) {
-      throw new AuthenticationError("Bad credentials");
+    const match = await this._bcrypt.compare(password, hashedPassword);
+    if (!match) {
+      throw new AuthenticationError("Kredensial yang Anda masukkan salah");
     }
   }
 }

@@ -4,7 +4,7 @@ const { createContainer } = require("instances-container");
 const { nanoid } = require("nanoid");
 const bcrypt = require("bcrypt");
 const pool = require("./database/postgres/pool");
-
+const Jwt = require("@hapi/jwt");
 // internal
 const UserRepositoryPostgres = require("./repository/UserRepositoryPostgres");
 const BcryptPasswordHash = require("./security/BcryptPasswordHash");
@@ -13,6 +13,11 @@ const BcryptPasswordHash = require("./security/BcryptPasswordHash");
 const AddUserUseCase = require("../Applications/use_case/AddUserUseCase");
 const UserRepository = require("../Domains/users/UserRepository");
 const PasswordHash = require("../Applications/security/PasswordHash");
+const AuthUseCase = require("../Applications/use_case/AuthUseCase");
+const AuthenticationRepository = require("../Domains/authentication/AuthenticatoinRepository");
+const AuthTokenManager = require("../Applications/security/AuthTokenManager");
+const AuthenticationRepositoryPostgres = require("./repository/AuthenticationRepositoryPostgres");
+const JwtAuthTokenManager = require("./security/JwtAuthTokenManager");
 
 const container = createContainer();
 
@@ -42,6 +47,28 @@ container.register([
       ],
     },
   },
+  {
+    key: AuthTokenManager.name,
+    Class: JwtAuthTokenManager,
+    parameter: {
+      dependencies: [
+        {
+          concrete: Jwt.token,
+        },
+      ],
+    },
+  },
+  {
+    key: AuthenticationRepository.name,
+    Class: AuthenticationRepositoryPostgres,
+    parameter: {
+      dependencies: [
+        {
+          concrete: pool,
+        },
+      ],
+    },
+  },
 ]);
 
 container.register([
@@ -54,6 +81,31 @@ container.register([
         {
           name: "userRepository",
           internal: UserRepository.name,
+        },
+        {
+          name: "passwordHash",
+          internal: PasswordHash.name,
+        },
+      ],
+    },
+  },
+  {
+    key: AuthUseCase.name,
+    Class: AuthUseCase,
+    parameter: {
+      injectType: "destructuring",
+      dependencies: [
+        {
+          name: "userRepository",
+          internal: UserRepository.name,
+        },
+        {
+          name: "authRepository",
+          internal: AuthenticationRepository.name,
+        },
+        {
+          name: "authTokenManager",
+          internal: AuthTokenManager.name,
         },
         {
           name: "passwordHash",

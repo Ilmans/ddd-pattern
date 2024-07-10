@@ -10,7 +10,7 @@ exports.shorthands = undefined;
  */
 exports.up = (pgm) => {
   pgm.createTable("authentications", {
-    token: { type: "VARCHAR(50)", notNull: true },
+    token: { type: "VARCHAR(200)", notNull: true },
   });
 };
 

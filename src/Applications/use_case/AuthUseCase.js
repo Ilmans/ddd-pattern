@@ -15,8 +15,11 @@ class AuthUseCase {
 
   async doLogin(creds) {
     const { username, password } = new UserLogin(creds);
-    const user = await this._userRepository.getUser(username);
+
+    const user = await this._userRepository.getUserByUsername(username);
+
     await this._passwordHash.compare(password, user.password);
+
     const payload = { username, id: user.id };
     const accessToken = await this._authManager.createAccessToken(payload);
     const refreshToken = await this._authManager.createRefreshToken(payload);

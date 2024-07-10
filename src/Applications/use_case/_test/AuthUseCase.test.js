@@ -22,7 +22,7 @@ describe("AuthUseCase", () => {
       const mockAuthManager = new AuthTokenManager();
       const mockPasswordHash = new PasswordHash();
 
-      mockUserRepo.getUser = jest.fn().mockImplementation(() =>
+      mockUserRepo.getUserByUsername = jest.fn().mockImplementation(() =>
         Promise.resolve({
           id: "user-123",
           username: "menzcreate",
@@ -58,7 +58,7 @@ describe("AuthUseCase", () => {
       const auth = await authUseCase.doLogin(creds);
 
       expect(auth).toEqual(tokens);
-      expect(mockUserRepo.getUser).toBeCalledWith(creds.username);
+      expect(mockUserRepo.getUserByUsername).toBeCalledWith(creds.username);
       expect(mockAuthManager.createAccessToken).toBeCalledWith({
         username: creds.username,
         id: "user-123",
