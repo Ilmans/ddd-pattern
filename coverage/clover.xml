@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1720591368026" clover="3.2.0">
-  <project timestamp="1720591368026" name="All files">
-    <metrics statements="183" coveredstatements="178" conditionals="50" coveredconditionals="46" methods="42" coveredmethods="38" elements="275" coveredelements="262" complexity="0" loc="183" ncloc="183" packages="14" files="24" classes="24"/>
+<coverage generated="1720592526077" clover="3.2.0">
+  <project timestamp="1720592526077" name="All files">
+    <metrics statements="196" coveredstatements="191" conditionals="50" coveredconditionals="46" methods="47" coveredmethods="43" elements="293" coveredelements="280" complexity="0" loc="196" ncloc="196" packages="14" files="25" classes="25"/>
     <package name="src.Applications.security">
       <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
       <file name="AuthTokenManager.js" path="/Users/ilmans/Documents/Learning/Expert Backend (dicoding)/Clean-arthitecture/src/Applications/security/AuthTokenManager.js">
@@ -9,7 +9,7 @@
         <line num="3" count="1" type="stmt"/>
         <line num="7" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
-        <line num="15" count="1" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
       </file>
       <file name="PasswordHash.js" path="/Users/ilmans/Documents/Learning/Expert Backend (dicoding)/Clean-arthitecture/src/Applications/security/PasswordHash.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
@@ -56,12 +56,12 @@
       </file>
       <file name="ClientError.js" path="/Users/ilmans/Documents/Learning/Expert Backend (dicoding)/Clean-arthitecture/src/Commons/exceptions/ClientError.js">
         <metrics statements="6" coveredstatements="6" conditionals="3" coveredconditionals="3" methods="1" coveredmethods="1"/>
-        <line num="3" count="19" type="stmt"/>
-        <line num="5" count="19" type="cond" truecount="2" falsecount="0"/>
+        <line num="3" count="20" type="stmt"/>
+        <line num="5" count="20" type="cond" truecount="2" falsecount="0"/>
         <line num="6" count="1" type="stmt"/>
-        <line num="9" count="18" type="stmt"/>
-        <line num="10" count="18" type="stmt"/>
-        <line num="14" count="8" type="stmt"/>
+        <line num="9" count="19" type="stmt"/>
+        <line num="10" count="19" type="stmt"/>
+        <line num="14" count="9" type="stmt"/>
       </file>
       <file name="DomainErrorTranslator.js" path="/Users/ilmans/Documents/Learning/Expert Backend (dicoding)/Clean-arthitecture/src/Commons/exceptions/DomainErrorTranslator.js">
         <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
@@ -73,10 +73,10 @@
       </file>
       <file name="InvariantError.js" path="/Users/ilmans/Documents/Learning/Expert Backend (dicoding)/Clean-arthitecture/src/Commons/exceptions/InvariantError.js">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="1" count="5" type="stmt"/>
-        <line num="5" count="16" type="stmt"/>
-        <line num="7" count="16" type="stmt"/>
-        <line num="11" count="5" type="stmt"/>
+        <line num="1" count="6" type="stmt"/>
+        <line num="5" count="17" type="stmt"/>
+        <line num="7" count="17" type="stmt"/>
+        <line num="11" count="6" type="stmt"/>
       </file>
       <file name="NotFoundError.js" path="/Users/ilmans/Documents/Learning/Expert Backend (dicoding)/Clean-arthitecture/src/Commons/exceptions/NotFoundError.js">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
@@ -234,7 +234,7 @@
       </file>
     </package>
     <package name="src.Infrastructures.security">
-      <metrics statements="5" coveredstatements="4" conditionals="1" coveredconditionals="1" methods="3" coveredmethods="2"/>
+      <metrics statements="18" coveredstatements="17" conditionals="1" coveredconditionals="1" methods="8" coveredmethods="7"/>
       <file name="BcryptPasswordHash.js" path="/Users/ilmans/Documents/Learning/Expert Backend (dicoding)/Clean-arthitecture/src/Infrastructures/security/BcryptPasswordHash.js">
         <metrics statements="5" coveredstatements="4" conditionals="1" coveredconditionals="1" methods="3" coveredmethods="2"/>
         <line num="3" count="2" type="stmt"/>
@@ -242,6 +242,22 @@
         <line num="8" count="2" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
         <line num="16" count="2" type="stmt"/>
+      </file>
+      <file name="JwtAuthTokenManager.js" path="/Users/ilmans/Documents/Learning/Expert Backend (dicoding)/Clean-arthitecture/src/Infrastructures/security/JwtAuthTokenManager.js">
+        <metrics statements="13" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="19" count="2" type="stmt"/>
+        <line num="20" count="2" type="stmt"/>
+        <line num="21" count="2" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
+        <line num="29" count="1" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.Interfaces.http.api.users">
