@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1720588553177" clover="3.2.0">
-  <project timestamp="1720588553177" name="All files">
-    <metrics statements="179" coveredstatements="174" conditionals="50" coveredconditionals="46" methods="39" coveredmethods="35" elements="268" coveredelements="255" complexity="0" loc="179" ncloc="179" packages="14" files="23" classes="23"/>
+<coverage generated="1720591368026" clover="3.2.0">
+  <project timestamp="1720591368026" name="All files">
+    <metrics statements="183" coveredstatements="178" conditionals="50" coveredconditionals="46" methods="42" coveredmethods="38" elements="275" coveredelements="262" complexity="0" loc="183" ncloc="183" packages="14" files="24" classes="24"/>
     <package name="src.Applications.security">
-      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
+      <file name="AuthTokenManager.js" path="/Users/ilmans/Documents/Learning/Expert Backend (dicoding)/Clean-arthitecture/src/Applications/security/AuthTokenManager.js">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+      </file>
       <file name="PasswordHash.js" path="/Users/ilmans/Documents/Learning/Expert Backend (dicoding)/Clean-arthitecture/src/Applications/security/PasswordHash.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="3" count="1" type="stmt"/>
