@@ -1,3 +1,4 @@
+const InvariantError = require("../../Commons/exceptions/InvariantError");
 const UserLogin = require("../../Domains/users/entities/UserLogin");
 
 class AuthUseCase {
@@ -29,11 +30,8 @@ class AuthUseCase {
 
   // renew refresh token
   async renewRefreshToken(payload) {
+    this._validatePayloadRefreshToken(payload);
     const { refreshToken } = payload;
-    if (!refreshToken)
-      throw new InvariantError(
-        "REFRESH_AUTHENTICATION_USE_CASE.NOT_CONTAIN_REFRESH_TOKEN"
-      );
 
     await this._authManager.verifyRefreshToken(refreshToken);
     const { username, id } = await this._authManager.decodePayload(
@@ -41,6 +39,31 @@ class AuthUseCase {
     );
 
     return this._authManager.createAccessToken({ username, id });
+  }
+
+  // logout action
+  async logout(payload) {
+    this._validatePayloadRefreshToken(payload);
+    const { refreshToken } = payload;
+    await this._authManager.verifyRefreshToken(refreshToken);
+    await this._authRepository.deleteToken(refreshToken);
+    return;
+  }
+
+  // verify token
+  _validatePayloadRefreshToken(payload) {
+    const { refreshToken } = payload;
+    if (!refreshToken) {
+      throw new Error(
+        "REFRESH_AUTHENTICATION_USE_CASE.NOT_CONTAIN_REFRESH_TOKEN"
+      );
+    }
+
+    if (typeof refreshToken !== "string") {
+      throw new Error(
+        "REFRESH_AUTHENTICATION_USE_CASE.PAYLOAD_NOT_MEET_DATA_TYPE_SPECIFICATION"
+      );
+    }
   }
 }
 

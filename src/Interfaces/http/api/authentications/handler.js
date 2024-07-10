@@ -6,6 +6,7 @@ class AuthHandler {
 
     this.postAuthHandler = this.postAuthHandler.bind(this);
     this.putAuthHandler = this.putAuthHandler.bind(this);
+    this.deleteAuthHandler = this.deleteAuthHandler.bind(this);
   }
 
   async postAuthHandler(request, h) {
@@ -34,6 +35,19 @@ class AuthHandler {
       },
     });
     response.code(201);
+    return response;
+  }
+
+  async deleteAuthHandler(request, h) {
+    const authUseCase = this._container.getInstance(AuthUseCase.name);
+    await authUseCase.logout(request.payload);
+
+    const response = h.response({
+      status: "success",
+      message: "refresh token has been revoked",
+    });
+
+    response.code(200);
     return response;
   }
 }

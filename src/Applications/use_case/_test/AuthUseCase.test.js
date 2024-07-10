@@ -147,4 +147,57 @@ describe("AuthUseCase", () => {
       ).rejects.toThrowError("refresh token tidak valid");
     });
   });
+
+  describe("Logout", () => {
+    it("should orchestrating the logout action correctly", async () => {
+      const refreshToken = "refresh_token";
+
+      const mockAuthRepo = new AuthenticationRepository();
+      const mockTokenManager = new AuthTokenManager();
+
+      mockAuthRepo.deleteToken = jest
+        .fn()
+        .mockImplementation(() => Promise.resolve());
+      mockTokenManager.verifyRefreshToken = jest
+        .fn()
+        .mockImplementation(() => Promise.resolve());
+
+      // create use case instance
+      const authUseCase = new AuthUseCase({
+        authRepository: mockAuthRepo,
+        authTokenManager: mockTokenManager,
+      });
+
+      // Action
+
+      await authUseCase.logout({ refreshToken });
+      expect(mockTokenManager.verifyRefreshToken).toBeCalledWith(refreshToken);
+      expect(mockAuthRepo.deleteToken).toBeCalledWith(refreshToken);
+    });
+
+    it("should throw error if refresh token is not valid", async () => {
+      const refreshToken = "refresh_token";
+      const mockTokenManager = new AuthTokenManager();
+      const mockAuthRepo = new AuthenticationRepository();
+
+      mockTokenManager.verifyRefreshToken = jest
+        .fn()
+        .mockImplementation(() =>
+          Promise.reject(new Error("refresh token tidak valid"))
+        );
+
+      // create use case instance
+
+      const authUseCase = new AuthUseCase({
+        authTokenManager: mockTokenManager,
+        authRepository: mockAuthRepo,
+      });
+
+      // Action
+
+      await expect(authUseCase.logout({ refreshToken })).rejects.toThrowError(
+        "refresh token tidak valid"
+      );
+    });
+  });
 });
