@@ -85,4 +85,18 @@ describe("UserRepositoryPostgres", () => {
       );
     });
   });
+
+  describe("getUserByUsername function", () => {
+    it("should return user by username", async () => {
+      // Arrange
+      await UsersTableTestHelper.addUser({ username: "dicoding" });
+      const userRepositoryPostgres = new UserRepositoryPostgres(pool, {});
+
+      // Action
+      const user = await userRepositoryPostgres.getUserByUsername("dicoding");
+
+      // Assert
+      expect(user.username).toEqual("dicoding");
+    });
+  });
 });
