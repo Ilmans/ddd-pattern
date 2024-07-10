@@ -24,3 +24,5 @@ const AuthenticationsTableTestHelper = {
     await pool.query("DELETE FROM authentications WHERE 1=1");
   },
 };
+
+module.exports = AuthenticationsTableTestHelper;

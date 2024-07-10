@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/Infrastructures/repository/UserRepositoryPostgres.js</title>
+    <title>Code coverage report for src/Infrastructures/repository/AuthenticationRepositoryPostgres.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/Infrastructures/repository</a> UserRepositoryPostgres.js</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/Infrastructures/repository</a> AuthenticationRepositoryPostgres.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>16/16</span>
+                <span class='fraction'>13/13</span>
             </div>
         
             
@@ -39,14 +39,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>16/16</span>
+                <span class='fraction'>13/13</span>
             </div>
         
             
@@ -101,82 +101,85 @@
 <a name='L36'></a><a href='#L36'>36</a>
 <a name='L37'></a><a href='#L37'>37</a>
 <a name='L38'></a><a href='#L38'>38</a>
-<a name='L39'></a><a href='#L39'>39</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const InvariantError = require("../../Commons/exceptions/InvariantError");
-const UserRepository = require("../../Domains/users/UserRepository");
-const RegisteredUser = require("../../Domains/users/entities/RegisteredUser");
+const AuthenticationRepository = require("../../Domains/authentication/AuthenticatoinRepository");
 &nbsp;
-class UserRepositoryPostgres extends UserRepository {
-  constructor(pool, idGenerator) {
+class AuthenticationRepositoryPostgres extends AuthenticationRepository {
+  constructor(pool) {
     super();
     this._pool = pool;
-    this._idGenerator = idGenerator;
   }
 &nbsp;
-  async verifyAvailableUsername(username) {
+  async addToken(token) {
     const query = {
-      text: "SELECT username FROM users WHERE username = $1",
-      values: [username],
+      text: "INSERT INTO authentications VALUES($1)",
+      values: [token],
     };
+    await this._pool.query(query);
+  }
 &nbsp;
+  async verifyToken(token) {
+    const query = {
+      text: "SELECT token FROM authentications WHERE token = $1",
+      values: [token],
+    };
     const result = await this._pool.query(query);
-    if (result.rowCount) {
-      throw new InvariantError("username tidak tersedia");
+&nbsp;
+    if (!result.rows.length) {
+      throw new InvariantError("token not found");
     }
   }
 &nbsp;
-  async addUser(registerUser) {
-    const { username, password, fullname } = registerUser;
-    const id = `user-${this._idGenerator()}`;
-&nbsp;
+  async deleteToken(token) {
     const query = {
-      text: "INSERT INTO users VALUES($1, $2, $3, $4) RETURNING id, username, fullname",
-      values: [id, username, password, fullname],
+      text: "DELETE FROM authentications WHERE token = $1",
+      values: [token],
     };
-&nbsp;
-    const result = await this._pool.query(query);
-    return new RegisteredUser({ ...result.rows[0] });
+    await this._pool.query(query);
   }
 }
 &nbsp;
-module.exports = UserRepositoryPostgres;
+module.exports = AuthenticationRepositoryPostgres;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
