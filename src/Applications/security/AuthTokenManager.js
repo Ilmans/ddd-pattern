@@ -7,6 +7,10 @@ class AuthTokenManager {
     throw new Error("AUTH_TOKEN_MANAGER.METHOD_NOT_IMPLEMENTED");
   }
 
+  verifyAccessToken() {
+    throw new Error("AUTH_TOKEN_MANAGER.METHOD_NOT_IMPLEMENTED");
+  }
+
   decodePayload() {
     throw new Error("AUTH_TOKEN_MANAGER.METHOD_NOT_IMPLEMENTED");
   }

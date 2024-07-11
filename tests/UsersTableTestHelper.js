@@ -17,6 +17,7 @@ const UserTableTestHelper = {
     };
 
     await pool.query(query);
+    return { id, username, password, fullname };
   },
 
   async findUsersById(id) {
