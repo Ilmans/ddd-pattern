@@ -29,6 +29,13 @@ DomainErrorTranslator._directories = {
   "USER_LOGIN.NOT_CONTAIN_NEEDED_PROPERTY": new InvariantError(
     "harus mengirimkan username dan password"
   ),
+  //   thread
+  "NEW_THREAD.NOT_CONTAIN_NEEDED_PROPERTY": new InvariantError(
+    "tidak dapat membuat thread baru karena properti yang dibutuhkan tidak ada"
+  ),
+  "NEW_THREAD.NOT_MEET_DATA_TYPE_SPECIFICATION": new InvariantError(
+    "tidak dapat membuat thread baru karena tipe data tidak sesuai"
+  ),
 };
 
 module.exports = DomainErrorTranslator;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1720616922129" clover="3.2.0">
-  <project timestamp="1720616922129" name="All files">
-    <metrics statements="283" coveredstatements="248" conditionals="66" coveredconditionals="55" methods="63" coveredmethods="54" elements="412" coveredelements="357" complexity="0" loc="283" ncloc="283" packages="15" files="30" classes="30"/>
+<coverage generated="1720680127098" clover="3.2.0">
+  <project timestamp="1720680127098" name="All files">
+    <metrics statements="318" coveredstatements="283" conditionals="78" coveredconditionals="67" methods="73" coveredmethods="64" elements="469" coveredelements="414" complexity="0" loc="318" ncloc="318" packages="17" files="34" classes="34"/>
     <package name="src.Applications.security">
       <metrics statements="7" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="4"/>
       <file name="AuthTokenManager.js" path="/Users/ilmans/Documents/Learning/Expert Backend (dicoding)/Clean-arthitecture/src/Applications/security/AuthTokenManager.js">
@@ -70,13 +70,13 @@
       <metrics statements="7" coveredstatements="6" conditionals="6" coveredconditionals="3" methods="0" coveredmethods="0"/>
       <file name="config.js" path="/Users/ilmans/Documents/Learning/Expert Backend (dicoding)/Clean-arthitecture/src/Commons/config.js">
         <metrics statements="7" coveredstatements="6" conditionals="6" coveredconditionals="3" methods="0" coveredmethods="0"/>
-        <line num="1" count="3" type="stmt"/>
-        <line num="2" count="3" type="stmt"/>
-        <line num="4" count="3" type="cond" truecount="1" falsecount="1"/>
-        <line num="5" count="3" type="stmt"/>
+        <line num="1" count="4" type="stmt"/>
+        <line num="2" count="4" type="stmt"/>
+        <line num="4" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="5" count="4" type="stmt"/>
         <line num="7" count="0" type="stmt"/>
-        <line num="10" count="3" type="stmt"/>
-        <line num="26" count="3" type="stmt"/>
+        <line num="10" count="4" type="stmt"/>
+        <line num="26" count="4" type="stmt"/>
       </file>
     </package>
     <package name="src.Commons.exceptions">
@@ -90,11 +90,11 @@
       </file>
       <file name="ClientError.js" path="/Users/ilmans/Documents/Learning/Expert Backend (dicoding)/Clean-arthitecture/src/Commons/exceptions/ClientError.js">
         <metrics statements="6" coveredstatements="6" conditionals="3" coveredconditionals="3" methods="1" coveredmethods="1"/>
-        <line num="3" count="25" type="stmt"/>
-        <line num="5" count="25" type="cond" truecount="2" falsecount="0"/>
+        <line num="3" count="29" type="stmt"/>
+        <line num="5" count="29" type="cond" truecount="2" falsecount="0"/>
         <line num="6" count="1" type="stmt"/>
-        <line num="9" count="24" type="stmt"/>
-        <line num="10" count="24" type="stmt"/>
+        <line num="9" count="28" type="stmt"/>
+        <line num="10" count="28" type="stmt"/>
         <line num="14" count="11" type="stmt"/>
       </file>
       <file name="DomainErrorTranslator.js" path="/Users/ilmans/Documents/Learning/Expert Backend (dicoding)/Clean-arthitecture/src/Commons/exceptions/DomainErrorTranslator.js">
@@ -103,13 +103,13 @@
         <line num="3" count="2" type="stmt"/>
         <line num="5" count="7" type="cond" truecount="2" falsecount="0"/>
         <line num="9" count="2" type="stmt"/>
-        <line num="34" count="2" type="stmt"/>
+        <line num="41" count="2" type="stmt"/>
       </file>
       <file name="InvariantError.js" path="/Users/ilmans/Documents/Learning/Expert Backend (dicoding)/Clean-arthitecture/src/Commons/exceptions/InvariantError.js">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="7" type="stmt"/>
-        <line num="5" count="22" type="stmt"/>
-        <line num="7" count="22" type="stmt"/>
+        <line num="5" count="26" type="stmt"/>
+        <line num="7" count="26" type="stmt"/>
         <line num="11" count="7" type="stmt"/>
       </file>
       <file name="NotFoundError.js" path="/Users/ilmans/Documents/Learning/Expert Backend (dicoding)/Clean-arthitecture/src/Commons/exceptions/NotFoundError.js">
@@ -128,6 +128,31 @@
         <line num="7" count="0" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
         <line num="15" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.Domains.threads">
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="ThreadRepository.js" path="/Users/ilmans/Documents/Learning/Expert Backend (dicoding)/Clean-arthitecture/src/Domains/threads/ThreadRepository.js">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.Domains.threads.entities">
+      <metrics statements="10" coveredstatements="10" conditionals="8" coveredconditionals="8" methods="2" coveredmethods="2"/>
+      <file name="NewThread.js" path="/Users/ilmans/Documents/Learning/Expert Backend (dicoding)/Clean-arthitecture/src/Domains/threads/entities/NewThread.js">
+        <metrics statements="10" coveredstatements="10" conditionals="8" coveredconditionals="8" methods="2" coveredmethods="2"/>
+        <line num="3" count="4" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="11" count="4" type="stmt"/>
+        <line num="12" count="4" type="cond" truecount="4" falsecount="0"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="16" count="3" type="cond" truecount="4" falsecount="0"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="22" count="2" type="stmt"/>
       </file>
     </package>
     <package name="src.Domains.users">
@@ -213,10 +238,10 @@
       <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="pool.js" path="/Users/ilmans/Documents/Learning/Expert Backend (dicoding)/Clean-arthitecture/src/Infrastructures/database/postgres/pool.js">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="3" type="stmt"/>
-        <line num="2" count="3" type="stmt"/>
-        <line num="4" count="3" type="stmt"/>
-        <line num="6" count="3" type="stmt"/>
+        <line num="1" count="4" type="stmt"/>
+        <line num="2" count="4" type="stmt"/>
+        <line num="4" count="4" type="stmt"/>
+        <line num="6" count="4" type="stmt"/>
       </file>
     </package>
     <package name="src.Infrastructures.http">
@@ -251,7 +276,7 @@
       </file>
     </package>
     <package name="src.Infrastructures.repository">
-      <metrics statements="34" coveredstatements="33" conditionals="6" coveredconditionals="5" methods="8" coveredmethods="8"/>
+      <metrics statements="47" coveredstatements="46" conditionals="6" coveredconditionals="5" methods="11" coveredmethods="11"/>
       <file name="AuthenticationRepositoryPostgres.js" path="/Users/ilmans/Documents/Learning/Expert Backend (dicoding)/Clean-arthitecture/src/Infrastructures/repository/AuthenticationRepositoryPostgres.js">
         <metrics statements="13" coveredstatements="13" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="4"/>
         <line num="1" count="2" type="stmt"/>
@@ -267,6 +292,22 @@
         <line num="31" count="1" type="stmt"/>
         <line num="35" count="1" type="stmt"/>
         <line num="39" count="2" type="stmt"/>
+      </file>
+      <file name="ThreadRepositoryPostgres.js" path="/Users/ilmans/Documents/Learning/Expert Backend (dicoding)/Clean-arthitecture/src/Infrastructures/repository/ThreadRepositoryPostgres.js">
+        <metrics statements="13" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
       </file>
       <file name="UserRepositoryPostgres.js" path="/Users/ilmans/Documents/Learning/Expert Backend (dicoding)/Clean-arthitecture/src/Infrastructures/repository/UserRepositoryPostgres.js">
         <metrics statements="21" coveredstatements="20" conditionals="4" coveredconditionals="3" methods="4" coveredmethods="4"/>
@@ -394,7 +435,7 @@
       </file>
     </package>
     <package name="tests">
-      <metrics statements="18" coveredstatements="18" conditionals="4" coveredconditionals="3" methods="6" coveredmethods="6"/>
+      <metrics statements="27" coveredstatements="27" conditionals="8" coveredconditionals="7" methods="9" coveredmethods="9"/>
       <file name="AuthenticationsTableTestHelper.js" path="/Users/ilmans/Documents/Learning/Expert Backend (dicoding)/Clean-arthitecture/tests/AuthenticationsTableTestHelper.js">
         <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
@@ -407,17 +448,29 @@
         <line num="24" count="4" type="stmt"/>
         <line num="28" count="1" type="stmt"/>
       </file>
-      <file name="UsersTableTestHelper.js" path="/Users/ilmans/Documents/Learning/Expert Backend (dicoding)/Clean-arthitecture/tests/UsersTableTestHelper.js">
+      <file name="ThreadsTableTestHelper.js" path="/Users/ilmans/Documents/Learning/Expert Backend (dicoding)/Clean-arthitecture/tests/ThreadsTableTestHelper.js">
         <metrics statements="9" coveredstatements="9" conditionals="4" coveredconditionals="3" methods="3" coveredmethods="3"/>
-        <line num="4" count="2" type="stmt"/>
-        <line num="7" count="2" type="stmt"/>
-        <line num="14" count="2" type="stmt"/>
-        <line num="19" count="2" type="stmt"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="29" count="2" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+      </file>
+      <file name="UsersTableTestHelper.js" path="/Users/ilmans/Documents/Learning/Expert Backend (dicoding)/Clean-arthitecture/tests/UsersTableTestHelper.js">
+        <metrics statements="9" coveredstatements="9" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
+        <line num="14" count="4" type="stmt"/>
+        <line num="19" count="4" type="stmt"/>
         <line num="23" count="1" type="stmt"/>
         <line num="28" count="1" type="stmt"/>
         <line num="29" count="1" type="stmt"/>
-        <line num="33" count="7" type="stmt"/>
-        <line num="37" count="2" type="stmt"/>
+        <line num="33" count="9" type="stmt"/>
+        <line num="37" count="3" type="stmt"/>
       </file>
     </package>
   </project>
