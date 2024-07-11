@@ -7,13 +7,13 @@ const AddUserUseCase = require("../AddUserUseCase");
 describe("AddUserUseCase", () => {
   it("should orchestrating the add user action correctly", async () => {
     const useCasePayload = {
-      username: "menzcreate",
+      username: "menzcreateaa",
       password: "secret",
       fullname: "ilman s",
     };
 
     const mockRegisteredUser = new RegisteredUser({
-      id: "user-123",
+      id: "user-12333",
       username: useCasePayload.username,
       fullname: useCasePayload.fullname,
     });
@@ -42,7 +42,7 @@ describe("AddUserUseCase", () => {
     // Assert
     expect(registeredUser).toStrictEqual(
       new RegisteredUser({
-        id: "user-123",
+        id: "user-12333",
         username: useCasePayload.username,
         fullname: useCasePayload.fullname,
       })

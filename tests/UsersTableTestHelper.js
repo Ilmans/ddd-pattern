@@ -7,7 +7,7 @@ const pool = require("../src/Infrastructures/database/postgres/pool");
 const UserTableTestHelper = {
   async addUser({
     id = "user-123",
-    username = "dicoding",
+    username = "menzcreate",
     password = "secret",
     fullname = "Dicoding Indonesia",
   }) {

@@ -1,4 +1,4 @@
-const AuthenticationRepository = require("../../../Domains/authentication/AuthenticatoinRepository");
+const AuthenticationRepository = require("../../../Domains/authentication/AuthenticationRepository");
 const UserRepository = require("../../../Domains/users/UserRepository");
 
 const AuthTokenManager = require("../../security/AuthTokenManager");

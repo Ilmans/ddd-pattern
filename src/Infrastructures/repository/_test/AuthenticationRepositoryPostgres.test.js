@@ -2,21 +2,23 @@ const AuthenticationsTableTestHelper = require("../../../../tests/Authentication
 const InvariantError = require("../../../Commons/exceptions/InvariantError");
 const pool = require("../../database/postgres/pool");
 const AuthenticationRepositoryPostgres = require("../AuthenticationRepositoryPostgres");
+
 describe("AuthenticationRepositoryPostgres", () => {
+  afterAll(async () => {
+    await pool.end();
+  });
   afterEach(async () => {
     await AuthenticationsTableTestHelper.cleanTable();
   });
-
-  afterAll(async () => {
-    await pool.end();
+  beforeEach(async () => {
+    await AuthenticationsTableTestHelper.cleanTable();
   });
 
   describe("addToken function", () => {
     it("should add token to authentications table", async () => {
-      const token = "sadfjlma";
+      const token = "asdfasflkjsdfasdfadfasf";
       const authenticationRepositoryPostgres =
         new AuthenticationRepositoryPostgres(pool, {});
-
       // add token
       await authenticationRepositoryPostgres.addToken(token);
 
@@ -47,7 +49,7 @@ describe("AuthenticationRepositoryPostgres", () => {
       // add token
       await AuthenticationsTableTestHelper.addToken(token);
 
-      expect(
+      await expect(
         authenticationRepositoryPostgres.verifyToken(token)
       ).resolves.not.toThrowError(InvariantError);
     });
@@ -67,7 +69,7 @@ describe("AuthenticationRepositoryPostgres", () => {
       // find token
       const tokens = await AuthenticationsTableTestHelper.findToken(token);
 
-      expect(tokens).toHaveLength(0);
+      await expect(tokens).toHaveLength(0);
     });
   });
 });

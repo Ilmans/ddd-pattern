@@ -5,7 +5,7 @@ const ThreadUseCase = require("../ThreadUseCase");
 describe("Thread Use case", () => {
   it("should orchestrating the add thread action correctly", async () => {
     // Arrange
-    const fakeIdGenerator = () => "123";
+
     const newThread = new NewThread({
       title: "A Thread",
       body: "A long thread",
@@ -27,7 +27,10 @@ describe("Thread Use case", () => {
     // Action
     const addedThread = await threadUseCase.addThread("user-123", newThread);
     // Assert
-    expect(addedThread.id).toEqual("thread-123");
-    expect(mockThreadRepo.addThread).toBeCalledWith("user-123", newThread); 
+    await expect(addedThread.id).toEqual("thread-123");
+    await expect(mockThreadRepo.addThread).toBeCalledWith(
+      "user-123",
+      newThread
+    );
   });
 });

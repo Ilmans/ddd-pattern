@@ -33,21 +33,12 @@ exports.up = (pgm) => {
       type: "text",
       notNull: true,
     },
-    //type enum "comment" or "reply"
-    type: {
-      type: "varchar(255)",
-      notNull: true,
-    },
     created_at: {
       type: "timestamp",
       notNull: true,
       default: pgm.func("current_timestamp"),
     },
-    updated_at: {
-      type: "timestamp",
-      notNull: true,
-      default: pgm.func("current_timestamp"),
-    },
+
     deleted_at: {
       type: "timestamp",
       default: null,

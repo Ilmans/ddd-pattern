@@ -14,13 +14,14 @@ const AddUserUseCase = require("../Applications/use_case/AddUserUseCase");
 const UserRepository = require("../Domains/users/UserRepository");
 const PasswordHash = require("../Applications/security/PasswordHash");
 const AuthUseCase = require("../Applications/use_case/AuthUseCase");
-const AuthenticationRepository = require("../Domains/authentication/AuthenticatoinRepository");
+
 const AuthTokenManager = require("../Applications/security/AuthTokenManager");
 const AuthenticationRepositoryPostgres = require("./repository/AuthenticationRepositoryPostgres");
 const JwtAuthTokenManager = require("./security/JwtAuthTokenManager");
 const ThreadUseCase = require("../Applications/use_case/ThreadUseCase");
 const ThreadRepository = require("../Domains/threads/ThreadRepository");
 const ThreadRepositoryPostgres = require("./repository/ThreadRepositoryPostgres");
+const AuthenticationRepository = require("../Domains/authentication/AuthenticationRepository");
 
 const container = createContainer();
 

@@ -6,6 +6,8 @@ class RegisteredThread {
     this.body = body;
     this.createdAt = created_at;
   }
+
+  
 }
 
 module.exports = RegisteredThread;

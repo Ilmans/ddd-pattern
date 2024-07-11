@@ -10,6 +10,12 @@ describe("threads endpoints", () => {
     await pool.end();
   });
 
+  beforeEach(async () => {
+    await ThreadsTableTestHelper.cleanTable();
+    await UserTableTestHelper.cleanTable();
+    await AuthenticationsTableTestHelper.cleanTable();
+  });
+
   afterEach(async () => {
     await ThreadsTableTestHelper.cleanTable();
     await UserTableTestHelper.cleanTable();
@@ -27,6 +33,7 @@ describe("threads endpoints", () => {
         fullname: "Menz",
       },
     });
+
     const user = JSON.parse(reg.payload).data.addedUser;
 
     const response = await server.inject({
@@ -56,9 +63,11 @@ describe("threads endpoints", () => {
       headers: { Authorization: `Bearer ${accessToken}` },
     });
 
-    expect(response.statusCode).toEqual(201);
+    await expect(response.statusCode).toEqual(201);
     const responseJson = JSON.parse(response.payload);
-    expect(responseJson.data.addedThread.title).toEqual(requestPayload.title);
+    await expect(responseJson.data.addedThread.title).toEqual(
+      requestPayload.title
+    );
   });
 
   it("should respons 400 if payload not fullfilled", async () => {
@@ -127,6 +136,6 @@ describe("threads endpoints", () => {
     });
 
     // Assert
-    expect(response.statusCode).toEqual(401);
+    await expect(response.statusCode).toEqual(401);
   });
 });

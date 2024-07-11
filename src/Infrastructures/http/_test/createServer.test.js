@@ -8,6 +8,10 @@ describe("HTTP server", () => {
     await pool.end();
   });
 
+  beforeEach(async () => {
+    await UsersTableTestHelper.cleanTable();
+  });
+
   afterEach(async () => {
     await UsersTableTestHelper.cleanTable();
   });
@@ -21,7 +25,7 @@ describe("HTTP server", () => {
       url: "/unregisteredRoute",
     });
     // Assert
-    expect(response.statusCode).toEqual(404);
+    await expect(response.statusCode).toEqual(404);
   });
 
   //   describe("when POST /users", () => {

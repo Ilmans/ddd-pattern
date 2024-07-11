@@ -13,6 +13,7 @@ const ThreadsTableTestHelper = {
     };
 
     await pool.query(query);
+    
   },
 
   async findThreadById(id) {
