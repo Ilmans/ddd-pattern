@@ -1,4 +1,5 @@
 const ThreadRepository = require("../../Domains/threads/ThreadRepository");
+const RegisteredThread = require("../../Domains/threads/entities/RegisteredThread");
 
 class ThreadRepositoryPostgres extends ThreadRepository {
   constructor(pool, idGenerator) {
@@ -16,7 +17,7 @@ class ThreadRepositoryPostgres extends ThreadRepository {
     };
 
     const result = await this._pool.query(query);
-    return result.rows[0];
+    return new RegisteredThread(result.rows[0]);
   }
 
   async getThreadById(id) {
