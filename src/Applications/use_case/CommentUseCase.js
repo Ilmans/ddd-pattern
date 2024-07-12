@@ -20,6 +20,15 @@ class CommentUseCase {
     });
   }
 
+  async deleteComment(userId, threadId, commentId) {
+    const comment = await this._commentRepository.find(commentId);
+    if (comment.threadId !== threadId)
+      throw new NotFoundError("comment not found");
+    if (comment.owner !== userId)
+      throw new Error("COMMENT_USE_CASE.NOT_THE_COMMENT_OWNER");
+    await this._commentRepository.delete(commentId);
+  }
+
   // validate input from user
   _verifyContent(payload) {
     const { content } = payload;

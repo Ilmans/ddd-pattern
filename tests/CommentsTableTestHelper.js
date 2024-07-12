@@ -12,7 +12,7 @@ const CommentsTableTestHelper = {
     parentId = null,
   }) {
     const query = {
-      text: "INSERT INTO comments VALUES($1, $2, $3, $4, $5, $6)",
+      text: "INSERT INTO comments VALUES($1, $2, $3, $4, $5, $6, $7)",
       values: [id, owner, parentId, thread_id, body, date, deletedAt],
     };
 

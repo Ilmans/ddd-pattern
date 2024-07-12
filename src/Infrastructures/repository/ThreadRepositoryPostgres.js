@@ -44,6 +44,8 @@ class ThreadRepositoryPostgres extends ThreadRepository {
     }
     return result.rows[0];
   }
+
+
 }
 
 module.exports = ThreadRepositoryPostgres;
