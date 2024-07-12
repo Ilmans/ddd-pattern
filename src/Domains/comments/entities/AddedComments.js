@@ -5,3 +5,5 @@ class AddedComments {
     this.owner = userId;
   }
 }
+
+module.exports = AddedComments;

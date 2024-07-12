@@ -19,6 +19,7 @@ class UserRepositoryPostgres extends UserRepository {
     if (result.rowCount) {
       throw new InvariantError("Username sudah digunakan");
     }
+    return;
   }
 
   async addUser(registerUser) {

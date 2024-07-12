@@ -1,4 +1,5 @@
 const CommentRepository = require("../../Domains/comments/CommentRepository");
+const AddedComments = require("../../Domains/comments/entities/AddedComments");
 
 class CommentRepositoryPostgres extends CommentRepository {
   constructor(pool, idGenerator) {
@@ -11,13 +12,11 @@ class CommentRepositoryPostgres extends CommentRepository {
     const { content, threadId, parentId } = data;
     const id = `comment-${this._idGenerator()}`;
     const query = {
-      text: "INSERT INTO comments (id,user_id,parent_id,thread_id,body) VALUES($1, $2, $3, $4, $5)",
-      values: [id, userId, parentId, threadId ?? null, content],
+      text: "INSERT INTO comments (id, user_id, parent_id, thread_id, body) VALUES ($1, $2, $3, $4, $5) RETURNING id, body, user_id",
+      values: [id, userId, parentId ?? null, threadId, content],
     };
-
     const result = await this._pool.query(query);
-
-    return result.rows[0];
+    return new AddedComments(result.rows[0]);
   }
 }
 

@@ -32,6 +32,15 @@ const CommentsTableTestHelper = {
   async cleanTable() {
     await pool.query("DELETE FROM comments WHERE 1=1");
   },
+
+  async deleteComment(id) {
+    const query = {
+      text: "DELETE FROM comments WHERE id = $1",
+      values: [id],
+    };
+
+    await pool.query(query);
+  },
 };
 
 module.exports = CommentsTableTestHelper;

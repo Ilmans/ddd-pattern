@@ -12,7 +12,7 @@ describe("Thread Use case", () => {
     });
 
     const mockThreadRepo = new ThreadRepository();
-    mockThreadRepo.addThread = jest.fn(() =>
+    mockThreadRepo.create = jest.fn(() =>
       Promise.resolve({
         id: "thread-123",
         title: newThread.title,
@@ -28,9 +28,6 @@ describe("Thread Use case", () => {
     const addedThread = await threadUseCase.addThread("user-123", newThread);
     // Assert
     await expect(addedThread.id).toEqual("thread-123");
-    await expect(mockThreadRepo.addThread).toBeCalledWith(
-      "user-123",
-      newThread
-    );
+    await expect(mockThreadRepo.create).toBeCalledWith("user-123", newThread);
   });
 });

@@ -1,9 +1,13 @@
 class ThreadRepository {
-  async addThread(userId, newThread) {
+  async create(userId, newThread) {
     throw new Error("THREAD_REPOSITORY.METHOD_NOT_IMPLEMENTED");
   }
 
-  async getThreadById(threadId) {
+  async isExistThread(threadId) {
+    throw new Error("THREAD_REPOSITORY.METHOD_NOT_IMPLEMENTED");
+  }
+
+  async find(threadId) {
     throw new Error("THREAD_REPOSITORY.METHOD_NOT_IMPLEMENTED");
   }
 }

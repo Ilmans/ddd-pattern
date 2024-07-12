@@ -6,11 +6,11 @@ describe("ThreadRepository", () => {
     const threadRepository = new ThreadRepository();
 
     // Action & Assert
-    await expect(
-      threadRepository.addThread("user-123", {})
-    ).rejects.toThrowError("THREAD_REPOSITORY.METHOD_NOT_IMPLEMENTED");
-    await expect(
-      threadRepository.getThreadById("thread-123")
-    ).rejects.toThrowError("THREAD_REPOSITORY.METHOD_NOT_IMPLEMENTED");
+    await expect(threadRepository.create("user-123", {})).rejects.toThrowError(
+      "THREAD_REPOSITORY.METHOD_NOT_IMPLEMENTED"
+    );
+    await expect(threadRepository.find("thread-123")).rejects.toThrowError(
+      "THREAD_REPOSITORY.METHOD_NOT_IMPLEMENTED"
+    );
   });
 });

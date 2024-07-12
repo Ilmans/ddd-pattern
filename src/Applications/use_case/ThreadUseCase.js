@@ -5,13 +5,16 @@ class ThreadUseCase {
     this._threadRepository = threadRepository;
   }
 
-
   async addThread(userId, newThread) {
     const { title, body } = new NewThread(newThread);
-    return this._threadRepository.addThread(userId, { title, body });
-  }
 
-  
+    const addedThread = await this._threadRepository.create(userId, {
+      title,
+      body,
+    });
+    console.log(newThread);
+    return addedThread;
+  }
 }
 
 module.exports = ThreadUseCase;
