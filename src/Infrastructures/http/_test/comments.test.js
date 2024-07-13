@@ -11,7 +11,7 @@ describe("/threads/{threadId}/comments endpoint", () => {
     await pool.end();
   });
 
-  beforeEach(async () => {
+  afterEach(async () => {
     await CommentsTableTestHelper.cleanTable();
     await ThreadsTableTestHelper.cleanTable();
     await UserTableTestHelper.cleanTable();
@@ -210,4 +210,54 @@ describe("/threads/{threadId}/comments endpoint", () => {
     //   expect(response.statusCode).toEqual(401);
     // });
   });
+
+  //   describe("when DELETE /threads/{threadId}/comments/{commentId}", () => {
+  //     it("should response 201 ", async () => {
+  //       // Arrange
+  //       const server = await createServer(container);
+
+  //       const accessToken = await getAccessToken(server, {
+  //         username: "foobar2",
+  //         password: "secreto",
+  //         f
+  //       });
+
+  //       // add thread
+  //       const threadResponse = await server.inject({
+  //         method: "POST",
+  //         url: "/threads",
+  //         payload: {
+  //           title: "A thread",
+  //           body: "A long thread",
+  //         },
+  //         headers: { Authorization: `Bearer ${accessToken}` },
+  //       });
+
+  //       const { id: threadId } = JSON.parse(threadResponse.payload).data
+  //         .addedThread;
+
+  //       // add comment
+  //       const commentResponse = await server.inject({
+  //         method: "POST",
+  //         url: `/threads/${threadId}/comments`,
+  //         payload: {
+  //           content: "A comment",
+  //         },
+  //         headers: { Authorization: `Bearer ${accessToken}` },
+  //       });
+
+  //       const { id: commentId } = JSON.parse(commentResponse.payload).data
+  //         .addedComment;
+
+  //       // Action
+  //       const response = await server.inject({
+  //         method: "DELETE",
+  //         url: `/threads/${threadId}/comments/${commentId}`,
+  //         headers: { Authorization: `Bearer ${accessToken}` },
+  //       });
+
+  //       // Assert
+  //       expect(response.statusCode).toEqual(201);
+  //     });
+  //   });
 });

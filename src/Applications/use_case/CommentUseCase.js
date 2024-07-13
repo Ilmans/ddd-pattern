@@ -22,10 +22,17 @@ class CommentUseCase {
 
   async deleteComment(userId, threadId, commentId) {
     const comment = await this._commentRepository.find(commentId);
-    if (comment.threadId !== threadId)
-      throw new NotFoundError("comment not found");
-    if (comment.owner !== userId)
+    console.log("test", {
+      comment,
+      threadId,
+      userId,
+    });
+
+    if (comment.thread_id !== threadId)
+      throw new NotFoundError("comment not found ");
+    if (comment.user_id !== userId)
       throw new Error("COMMENT_USE_CASE.NOT_THE_COMMENT_OWNER");
+
     await this._commentRepository.delete(commentId);
   }
 

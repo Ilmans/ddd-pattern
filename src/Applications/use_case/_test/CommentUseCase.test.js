@@ -97,11 +97,11 @@ describe("CommentUseCase", () => {
       mockCommentRepository.find = jest.fn(() =>
         Promise.resolve({
           id: "comment-123",
-          threadId: "thread-123",
-          owner: "user-123",
+          thread_id: "thread-123",
+          user_id: "user-123",
         })
       );
-      mockCommentRepository.delete = jest.fn();
+      mockCommentRepository.delete = jest.fn(() => Promise.resolve());
 
       const commentUseCase = new CommentUseCase({
         commentRepository: mockCommentRepository,
@@ -123,7 +123,7 @@ describe("CommentUseCase", () => {
       const mockThreadRepository = new ThreadRepository();
 
       mockCommentRepository.find = jest.fn(() => {
-        throw new NotFoundError("Komentar tidak ditemukan");
+        throw new NotFoundError("Comment not found");
       });
 
       const commentUseCase = new CommentUseCase({
@@ -143,8 +143,8 @@ describe("CommentUseCase", () => {
       mockCommentRepository.find = jest.fn(() =>
         Promise.resolve({
           id: "comment-123",
-          threadId: "thread-123",
-          owner: "user-124",
+          thread_id: "thread-123",
+          user_id: "user-124",
         })
       );
 
