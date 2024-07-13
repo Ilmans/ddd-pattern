@@ -145,6 +145,7 @@ describe("CommentUseCase", () => {
           id: "comment-123",
           thread_id: "thread-123",
           user_id: "user-124",
+          body: "comment body",
         })
       );
 

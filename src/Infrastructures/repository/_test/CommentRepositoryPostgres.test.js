@@ -33,7 +33,7 @@ describe("CommentRepositoryPostgres", () => {
       const commentId = "comment-123";
       const commentContent = "A comment";
 
-      await UserTableTestHelper.addUser({ id: userId });
+      const user = await UserTableTestHelper.addUser({ id: userId });
       await ThreadsTableTestHelper.addThread({
         id: threadId,
         userId,
@@ -52,11 +52,12 @@ describe("CommentRepositoryPostgres", () => {
 
       // Action
       const comment = await commentRepositoryPostgres.find(commentId);
-
+  
       // Assert
       expect(comment.id).toBe(commentId);
       expect(comment.body).toBe(commentContent);
       expect(comment.user_id).toBe(userId);
+      expect(comment.username).toBe(user.username);
     });
   });
 

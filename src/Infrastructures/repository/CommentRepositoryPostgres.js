@@ -24,7 +24,7 @@ class CommentRepositoryPostgres extends CommentRepository {
 
   async find(commentId) {
     const query = {
-      text: "SELECT * FROM comments WHERE id = $1",
+      text: "SELECT comments.*, users.id AS user_id, users.username FROM comments JOIN users ON comments.user_id = users.id WHERE comments.id = $1",
       values: [commentId],
     };
     const result = await this._pool.query(query);

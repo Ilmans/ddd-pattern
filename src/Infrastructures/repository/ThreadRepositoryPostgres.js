@@ -35,7 +35,7 @@ class ThreadRepositoryPostgres extends ThreadRepository {
 
   async find(id) {
     const query = {
-      text: "SELECT * FROM threads WHERE id = $1",
+      text: "SELECT threads.*, users.id AS user_id, users.username FROM threads JOIN users ON threads.user_id = users.id WHERE threads.id = $1",
       values: [id],
     };
     const result = await this._pool.query(query);
@@ -44,8 +44,6 @@ class ThreadRepositoryPostgres extends ThreadRepository {
     }
     return result.rows[0];
   }
-
-
 }
 
 module.exports = ThreadRepositoryPostgres;

@@ -110,32 +110,32 @@ describe("ThreadRepositoryPostgres", () => {
       ).rejects.toThrowError(NotFoundError);
     });
 
-    // it("should return thread correctly", async () => {
-    //   // Arrange
-    //   const userId = "user-123";
-    //   const threadId = "thread-123";
-    //   const date = new Date().toISOString();
+    it("should return thread correctly", async () => {
+      // Arrange
+      const userId = "user-123";
+      const threadId = "thread-123";
+      const date = new Date().toISOString();
 
-    //   await UsersTableTestHelper.addUser({ id: userId, username: "foobar" });
-    //   await ThreadsTableTestHelper.addThread({
-    //     id: threadId,
-    //     title: "A thread",
-    //     body: "A long thread",
-    //     date,
-    //     owner: userId,
-    //   });
+      await UsersTableTestHelper.addUser({ id: userId, username: "foobar" });
+      await ThreadsTableTestHelper.addThread({
+        id: threadId,
+        title: "A thread",
+        body: "A long thread",
 
-    //   const threadRepositoryPostgres = new ThreadRepositoryPostgres(pool, {});
+        userId: userId,
+      });
 
-    //   // Action
-    //   const thread = await threadRepositoryPostgres.find(threadId);
+      const threadRepositoryPostgres = new ThreadRepositoryPostgres(pool, {});
 
-    //   // Assert
-    //   expect(thread.id).toStrictEqual(threadId);
-    //   expect(thread.title).toStrictEqual("A thread");
-    //   expect(thread.body).toStrictEqual("A long thread");
-    //   expect(thread.date).toBeTruthy();
-    //   expect(thread.username).toStrictEqual("foobar");
-    // });
+      // Action
+      const thread = await threadRepositoryPostgres.find(threadId);
+
+      // Assert
+      expect(thread.id).toStrictEqual(threadId);
+      expect(thread.title).toStrictEqual("A thread");
+      expect(thread.body).toStrictEqual("A long thread");
+      expect(thread.created_at).toBeTruthy();
+      expect(thread.username).toStrictEqual("foobar");
+    });
   });
 });
