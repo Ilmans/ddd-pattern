@@ -55,6 +55,7 @@ describe("Thread Use case", () => {
     };
     const mockCommentRepo = new CommentRepository();
     mockCommentRepo.get = jest.fn(() => Promise.resolve([mockComment]));
+    mockCommentRepo.getChildComments = jest.fn(() => Promise.resolve([]));
 
     const threadUseCase = new ThreadUseCase({
       threadRepository: mockThreadRepo,
@@ -69,9 +70,60 @@ describe("Thread Use case", () => {
     const threaddetail = await threadUseCase.getThreadById("thread-123");
 
     // Assert
-    await expect(threaddetail.id).toEqual("thread-123");
-    await expect(threaddetail.comments).toEqual([new Comment(mockComment)]);
-    await expect(mockThreadRepo.find).toBeCalledWith("thread-123");
-    await expect(mockCommentRepo.get).toBeCalledWith("thread-123");
+    expect(threaddetail.id).toEqual("thread-123");
+    expect(threaddetail.comments).toEqual([new Comment(mockComment)]);
+    expect(mockThreadRepo.find).toBeCalledWith("thread-123");
+    expect(mockCommentRepo.get).toBeCalledWith("thread-123");
+  });
+
+  it("should orchestrating the get thread by id action correctly with replies", async () => {
+    // Arrange
+    const mockThreadRepo = new ThreadRepository();
+    mockThreadRepo.find = jest.fn(() =>
+      Promise.resolve({
+        id: "thread-123",
+        title: "A Thread",
+        body: "A long thread",
+        user_id: "user-123",
+        created_at: "2021-08-08T07:22:33.555Z",
+        username: "mnzcreate",
+      })
+    );
+    const mockComment = {
+      id: "comment-123",
+      username: "johndoe",
+      date: "2023-09-08T07:22:33.555Z",
+      content: "a comment",
+    };
+    const mockReplies = {
+      id: "reply-123",
+      username: "johndoe",
+      date: "2023-09-08T07:22:33.555Z",
+      content: "a reply",
+    };
+    const mockCommentRepo = new CommentRepository();
+    mockCommentRepo.get = jest.fn(() => Promise.resolve([mockComment]));
+    mockCommentRepo.getChildComments = jest.fn(() =>
+      Promise.resolve([mockReplies])
+    );
+
+    const threadUseCase = new ThreadUseCase({
+      threadRepository: mockThreadRepo,
+      commentRepository: mockCommentRepo,
+    });
+
+    // Action
+    const threaddetail = await threadUseCase.getThreadById("thread-123");
+    // Assert
+    expect(threaddetail.id).toEqual("thread-123");
+    expect(threaddetail.comments).toEqual([
+      new Comment({
+        ...mockComment,
+        replies: [new Comment(mockReplies)],
+      }),
+    ]);
+    expect(mockThreadRepo.find).toBeCalledWith("thread-123");
+    expect(mockCommentRepo.get).toBeCalledWith("thread-123");
+    expect(mockCommentRepo.getChildComments).toBeCalledWith("comment-123");
   });
 });

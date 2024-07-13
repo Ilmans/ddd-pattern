@@ -211,53 +211,196 @@ describe("/threads/{threadId}/comments endpoint", () => {
     // });
   });
 
-  //   describe("when DELETE /threads/{threadId}/comments/{commentId}", () => {
-  //     it("should response 201 ", async () => {
-  //       // Arrange
-  //       const server = await createServer(container);
+  describe("when POST /threads/{threadId}/comments/{commentId}/replies", () => {
+    it("should response 201 and added reply", async () => {
+      // Arrange
+      const requestPayload = { content: "A reply" };
+      const server = await createServer(container);
 
-  //       const accessToken = await getAccessToken(server, {
-  //         username: "foobar2",
-  //         password: "secreto",
-  //         f
-  //       });
+      const accessToken = await getAccessToken(server);
 
-  //       // add thread
-  //       const threadResponse = await server.inject({
-  //         method: "POST",
-  //         url: "/threads",
-  //         payload: {
-  //           title: "A thread",
-  //           body: "A long thread",
-  //         },
-  //         headers: { Authorization: `Bearer ${accessToken}` },
-  //       });
+      // add thread
+      const threadResponse = await server.inject({
+        method: "POST",
+        url: "/threads",
+        payload: {
+          title: "A thread",
+          body: "A long thread",
+        },
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
 
-  //       const { id: threadId } = JSON.parse(threadResponse.payload).data
-  //         .addedThread;
+      const { id: threadId } = JSON.parse(threadResponse.payload).data
+        .addedThread;
 
-  //       // add comment
-  //       const commentResponse = await server.inject({
-  //         method: "POST",
-  //         url: `/threads/${threadId}/comments`,
-  //         payload: {
-  //           content: "A comment",
-  //         },
-  //         headers: { Authorization: `Bearer ${accessToken}` },
-  //       });
+      // add comment
+      const commentResponse = await server.inject({
+        method: "POST",
+        url: `/threads/${threadId}/comments`,
+        payload: {
+          content: "A comment",
+        },
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
 
-  //       const { id: commentId } = JSON.parse(commentResponse.payload).data
-  //         .addedComment;
+      const { id: commentId } = JSON.parse(commentResponse.payload).data
+        .addedComment;
 
-  //       // Action
-  //       const response = await server.inject({
-  //         method: "DELETE",
-  //         url: `/threads/${threadId}/comments/${commentId}`,
-  //         headers: { Authorization: `Bearer ${accessToken}` },
-  //       });
+      // Action
+      const response = await server.inject({
+        method: "POST",
+        url: `/threads/${threadId}/comments/${commentId}/replies`,
+        payload: requestPayload,
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
 
-  //       // Assert
-  //       expect(response.statusCode).toEqual(201);
-  //     });
-  //   });
+      // Assert
+      expect(response.statusCode).toEqual(201);
+    });
+
+    // it("should response 400 if payload not contain needed property", async () => {
+    //   // Arrange
+    //   const server = await createServer(container);
+
+    //   const accessToken = await getAccessToken(server);
+
+    //   // add thread
+    //   const threadResponse = await server.inject({
+    //     method: "POST",
+    //     url: "/threads",
+    //     payload: {
+    //       title: "A thread",
+    //       body: "A long thread",
+    //     },
+    //     headers: { Authorization: `Bearer ${accessToken}` },
+    //   });
+    //   const { id: threadId } = JSON.parse(threadResponse.payload).data
+    //     .addedThread;
+
+    //   // add comment
+    //   const commentResponse = await server.inject({
+    //     method: "POST",
+    //     url: `/threads/${threadId}/comments`,
+    //     payload: {
+    //       content: "A comment",
+    //     },
+    //     headers
+  });
+
+  describe("when DELETE /threads/{threadId}/comments/{commentId}", () => {
+    it("should response 201 ", async () => {
+      // Arrange
+      const server = await createServer(container);
+
+      const accessToken = await getAccessToken(server, {
+        username: "foobar2",
+        password: "secreto",
+        fullname: "Foo Baraa",
+      });
+
+      // add thread
+      const threadResponse = await server.inject({
+        method: "POST",
+        url: "/threads",
+        payload: {
+          title: "A thread",
+          body: "A long thread",
+        },
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
+
+      const { id: threadId } = JSON.parse(threadResponse.payload).data
+        .addedThread;
+
+      // add comment
+      const commentResponse = await server.inject({
+        method: "POST",
+        url: `/threads/${threadId}/comments`,
+        payload: {
+          content: "A comment",
+        },
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
+
+      const { id: commentId } = JSON.parse(commentResponse.payload).data
+        .addedComment;
+
+      // Action
+      const response = await server.inject({
+        method: "DELETE",
+        url: `/threads/${threadId}/comments/${commentId}`,
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
+
+      // Assert
+      expect(response.statusCode).toEqual(201);
+    });
+  });
+
+  describe("when DELETE /threads/{threadId}/comments/{commentId}/replies/{replyId}", () => {
+    it("should response 201", async () => {
+      // Arrange
+      const server = await createServer(container);
+
+      const accessToken = await getAccessToken(server, {
+        username: "foobar2",
+        password: "secreto",
+        fullname: "Foo Baraa",
+      });
+
+      // add thread
+      const threadResponse = await server.inject({
+        method: "POST",
+        url: "/threads",
+        payload: {
+          title: "A thread",
+          body: "A long thread",
+        },
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
+
+      const { id: threadId } = JSON.parse(threadResponse.payload).data
+        .addedThread;
+
+      // add comment
+
+      const commentResponse = await server.inject({
+        method: "POST",
+        url: `/threads/${threadId}/comments`,
+        payload: {
+          content: "A comment",
+        },
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
+
+      const { id: commentId } = JSON.parse(commentResponse.payload).data
+        .addedComment;
+
+      // add reply
+
+      const replyResponse = await server.inject({
+        method: "POST",
+        url: `/threads/${threadId}/comments/${commentId}/replies`,
+        payload: {
+          content: "A reply",
+        },
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
+
+      const { id: replyId } = JSON.parse(replyResponse.payload).data
+        .addedComment;
+
+      // Action
+
+      const response = await server.inject({
+        method: "DELETE",
+        url: `/threads/${threadId}/comments/${commentId}/replies/${replyId}`,
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
+
+      // Assert
+
+      expect(response.statusCode).toEqual(201);
+    });
+  });
 });

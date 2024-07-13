@@ -41,6 +41,16 @@ const CommentsTableTestHelper = {
 
     await pool.query(query);
   },
+
+  async getChildComments(parentId) {
+    const query = {
+      text: "SELECT * FROM comments WHERE parent_id = $1",
+      values: [parentId],
+    };
+
+    const result = await pool.query(query);
+    return result.rows;
+  },
 };
 
 module.exports = CommentsTableTestHelper;

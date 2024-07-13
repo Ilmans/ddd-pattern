@@ -15,5 +15,13 @@ describe("CommentRepository", () => {
     await expect(commentRepository.delete("comment-123")).rejects.toThrowError(
       "COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED"
     );
+
+    await expect(commentRepository.get("thread-123")).rejects.toThrowError(
+      "COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED"
+    );
+
+    await expect(
+      commentRepository.getChildComments("comment-123")
+    ).rejects.toThrowError("COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED");
   });
 });

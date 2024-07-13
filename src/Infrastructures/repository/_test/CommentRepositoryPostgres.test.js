@@ -52,7 +52,7 @@ describe("CommentRepositoryPostgres", () => {
 
       // Action
       const comment = await commentRepositoryPostgres.find(commentId);
-  
+
       // Assert
       expect(comment.id).toBe(commentId);
       expect(comment.body).toBe(commentContent);
@@ -61,7 +61,6 @@ describe("CommentRepositoryPostgres", () => {
     });
   });
 
-  //   describe("verifyCommentOwner function", () => {
   //     it("should throw AuthorizationError when comment owner not authorized", async () => {
   //       // Arrange
   //       const userId = "user-123";
@@ -167,82 +166,51 @@ describe("CommentRepositoryPostgres", () => {
     });
   });
 
-  //   describe("getCommentsByThreadId function", () => {
-  //     it("should return thread comments correctly", async () => {
-  //       // Arrange
-  //       const userId = "user-123";
-  //       const otherUserId = "user-456";
-  //       const threadId = "thread-123";
+  describe("addComment with parent_id (reply)", () => {
+    beforeEach(async () => {
+      await UserTableTestHelper.addUser({ id: "user-123", username: "random" });
+      await ThreadsTableTestHelper.addThread({
+        id: "thread-1234",
+        userId: "user-123",
+      });
+      await CommentsTableTestHelper.addComment({
+        id: "comment-1234",
+        thread_id: "thread-1234",
+        owner: "user-123",
+      });
+    });
 
-  //       await UsersTableTestHelper.addUser({ id: userId, username: "foobar" });
-  //       await UsersTableTestHelper.addUser({
-  //         id: otherUserId,
-  //         username: "johndoe",
-  //       });
-  //       await ThreadsTableTestHelper.addThread({ id: threadId, owner: userId });
+    it("should persist new reply", async () => {
+      // Arrange
+      const newComment = {
+        content: "A reply",
+      };
 
-  //       await CommentsTableTestHelper.addComment({
-  //         id: "comment-new",
-  //         content: "A new comment",
-  //         date: "2023-09-10",
-  //         thread: threadId,
-  //         owner: userId,
-  //       });
-  //       await CommentsTableTestHelper.addComment({
-  //         id: "comment-old",
-  //         content: "An old comment",
-  //         date: "2023-09-09",
-  //         thread: threadId,
-  //         owner: otherUserId,
-  //       });
+      const fakeIdGenerator = () => "123";
+      const commentRepositoryPostgres = new CommentRepositoryPostgres(
+        pool,
+        fakeIdGenerator
+      );
 
-  //       const commentRepositoryPostgres = new CommentRepositoryPostgres(pool, {});
+      // Action
+      const child = await commentRepositoryPostgres.create("user-123", {
+        content: newComment.content,
+        threadId: "thread-1234",
+        parentId: "comment-1234",
+      });
 
-  //       // Action
-  //       const comments = await commentRepositoryPostgres.getCommentsByThreadId(
-  //         threadId
-  //       );
+      // Assert
+      const parent = await CommentsTableTestHelper.findCommentsById(
+        "comment-1234"
+      );
 
-  //       // Assert
-  //       expect(comments).toHaveLength(2);
-  //       expect(comments[0].id).toBe("comment-old"); // older comment first
-  //       expect(comments[1].id).toBe("comment-new");
-  //       expect(comments[0].username).toBe("johndoe");
-  //       expect(comments[1].username).toBe("foobar");
-  //       expect(comments[0].content).toBe("An old comment");
-  //       expect(comments[1].content).toBe("A new comment");
-  //       expect(comments[0].date).toBeTruthy();
-  //       expect(comments[1].date).toBeTruthy();
-  //     });
-  //   });
+      const childd = await CommentsTableTestHelper.getChildComments(
+        "comment-1234"
+      );
 
-  //   describe("deleteCommentById function", () => {
-  //     it("should soft delete comment and update deleted_at field", async () => {
-  //       // Arrange
-  //       await UsersTableTestHelper.addUser({ id: "user-123" });
-  //       await ThreadsTableTestHelper.addThread({
-  //         id: "thread-123",
-  //         owner: "user-123",
-  //       });
-
-  //       const commentId = "comment-123";
-  //       const commentRepositoryPostgres = new CommentRepositoryPostgres(pool, {});
-
-  //       await CommentsTableTestHelper.addComment({
-  //         id: commentId,
-  //         thread: "thread-123",
-  //         owner: "user-123",
-  //       });
-
-  //       // Action
-  //       await commentRepositoryPostgres.deleteCommentById(commentId);
-
-  //       // Assert
-  //       const comments = await CommentsTableTestHelper.findCommentsById(
-  //         commentId
-  //       );
-  //       expect(comments).toHaveLength(1);
-  //       expect(comments[0].deleted_at).toBeTruthy();
-  //     });
-  //   });
+      expect(parent).toHaveLength(1);
+      expect(childd).toHaveLength(1);
+      expect(child.content).toBe("A reply");
+    });
+  });
 });

@@ -43,11 +43,22 @@ class CommentRepositoryPostgres extends CommentRepository {
     return result.rows;
   }
 
-  async delete(commentId) {
+  async getChildComments(parentId) {
     const query = {
-      text: "UPDATE comments SET deleted_at = NOW() WHERE id = $1 RETURNING id",
-      values: [commentId],
+      text: "SELECT comments.*, users.username FROM comments JOIN users ON comments.user_id = users.id WHERE comments.parent_id = $1 ORDER BY comments.created_at ASC",
+      values: [parentId],
     };
+    const result = await this._pool.query(query);
+    return result.rows;
+  }
+
+  async delete(commentId, parent_id = null) {
+    const q = parent_id ? "AND parent_id = $2" : "";
+    const query = {
+      text: `UPDATE comments SET deleted_at = NOW() WHERE id = $1 ${q} RETURNING id`,
+      values: parent_id ? [commentId, parent_id] : [commentId],
+    };
+
     const result = await this._pool.query(query);
     if (!result.rows.length) {
       throw new Error("comment not found");
