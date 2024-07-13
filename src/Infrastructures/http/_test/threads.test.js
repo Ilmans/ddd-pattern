@@ -139,49 +139,54 @@ describe("/threads endpoint", () => {
     // });
   });
 
-  //   describe("when GET /threads/{threadId}", () => {
-  //     it("should response 200 and thread detail", async () => {
-  //       // Arrange
-  //       const threadId = "thread-123";
-  //       const server = await createServer(container);
+  describe("when GET /threads/{threadId}", () => {
+    it("should response 200 and thread detail", async () => {
+      // Arrange
+      const threadId = "thread-123tt";
+      const server = await createServer(container);
 
-  //       // add user
-  //       await UsersTableTestHelper.addUser({ id: "user-123" });
-  //       // add thread
-  //       await ThreadsTableTestHelper.addThread({
-  //         id: threadId,
-  //         owner: "user-123",
-  //       });
+      // add user
+      await UsersTableTestHelper.addUser({
+        id: "user-123tt",
+        username: "asdfasdf",
+      });
+      // add thread
+      await ThreadsTableTestHelper.addThread({
+        id: threadId,
+        userId: "user-123tt",
+      });
 
-  //       // Action
-  //       const response = await server.inject({
-  //         method: "GET",
-  //         url: `/threads/${threadId}`,
-  //       });
+      // Action
+      const response = await server.inject({
+        method: "GET",
+        url: `/threads/${threadId}`,
+      });
 
-  //       // Assert
-  //       const responseJson = JSON.parse(response.payload);
-  //       expect(response.statusCode).toEqual(200);
-  //       expect(responseJson.status).toEqual("success");
-  //       expect(responseJson.data.thread).toBeDefined();
-  //       expect(responseJson.data.thread.id).toEqual(threadId);
-  //     });
+      //   console.log("response", response);
 
-  //     it("should response 404 if thread is not exist", async () => {
-  //       // Arrange
-  //       const server = await createServer(container);
+      // Assert
+      const responseJson = JSON.parse(response.payload);
+      expect(response.statusCode).toEqual(200);
+      //   expect(responseJson.status).toEqual("success");
+      //   expect(responseJson.data.thread).toBeDefined();
+      //   expect(responseJson.data.thread.id).toEqual(threadId);
+    });
 
-  //       // Action
-  //       const response = await server.inject({
-  //         method: "GET",
-  //         url: "/threads/thread-789",
-  //       });
+    // it("should response 404 if thread is not exist", async () => {
+    //   // Arrange
+    //   const server = await createServer(container);
 
-  //       // Assert
-  //       const responseJson = JSON.parse(response.payload);
-  //       expect(response.statusCode).toEqual(404);
-  //       expect(responseJson.status).toEqual("fail");
-  //       expect(responseJson.message).toEqual("thread tidak ditemukan");
-  //     });
-  //   });
+    //   // Action
+    //   const response = await server.inject({
+    //     method: "GET",
+    //     url: "/threads/thread-789",
+    //   });
+
+    //   // Assert
+    //   const responseJson = JSON.parse(response.payload);
+    //   expect(response.statusCode).toEqual(404);
+    //   expect(responseJson.status).toEqual("fail");
+    //   expect(responseJson.message).toEqual("thread tidak ditemukan");
+    // });
+  });
 });

@@ -8,6 +8,21 @@ class ThreadsHandler {
     this.postThreadsHandler = this.postThreadsHandler.bind(this);
     this.commentThreadHandler = this.commentThreadHandler.bind(this);
     this.deleteCommentHandler = this.deleteCommentHandler.bind(this);
+    this.getThreadByIdHandler = this.getThreadByIdHandler.bind(this);
+  }
+
+  async getThreadByIdHandler(request) {
+    const threadUseCase = await this._container.getInstance(ThreadUseCase.name);
+    const thread = await threadUseCase.getThreadById(request.params.threadId);
+
+    const response = {
+      status: "success",
+      data: {
+        thread,
+      },
+    };
+    response.code = 200;
+    return response;
   }
 
   async postThreadsHandler(request, h) {

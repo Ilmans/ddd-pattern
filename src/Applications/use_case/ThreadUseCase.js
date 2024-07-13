@@ -1,8 +1,10 @@
 const NewThread = require("../../Domains/threads/entities/NewThread");
+const Thread = require("../../Domains/threads/entities/Thread");
 
 class ThreadUseCase {
-  constructor({ threadRepository }) {
+  constructor({ threadRepository, commentRepository }) {
     this._threadRepository = threadRepository;
+    this._commentRepository = commentRepository;
   }
 
   async addThread(userId, newThread) {
@@ -12,8 +14,16 @@ class ThreadUseCase {
       title,
       body,
     });
-    console.log(newThread);
+  
     return addedThread;
+  }
+
+  async getThreadById(threadId) {
+   
+    const thread = await this._threadRepository.find(threadId);
+    const comments = await this._commentRepository.get(threadId);
+    thread.comments = comments;
+    return new Thread(thread);
   }
 }
 
