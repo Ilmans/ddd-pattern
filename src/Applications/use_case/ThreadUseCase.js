@@ -20,6 +20,7 @@ class ThreadUseCase {
   }
 
   async getThreadById(threadId) {
+   
     const thread = await this._threadRepository.find(threadId);
     const comments = await this._commentRepository.get(threadId);
 

@@ -150,17 +150,17 @@ describe("CommentRepositoryPostgres", () => {
       );
 
       // Action
-      const addedComment = await commentRepositoryPostgres.create("user-123", {
+      const addedComment = await commentRepositoryPostgres.create("user-12345", {
         content: "A comment",
         threadId: "thread-123",
       });
-      console.log(addedComment);
+    
       // Assert
       expect(addedComment).toStrictEqual(
         new AddedComments({
           id: "comment-123",
           body: "A comment",
-          userId: "user-123",
+          userId: "user-12345",
         })
       );
     });

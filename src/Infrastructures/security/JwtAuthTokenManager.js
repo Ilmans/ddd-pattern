@@ -21,7 +21,7 @@ class JwtAuthTokenManager extends AuthTokenManager {
       this._jwt.verify(artifacts, process.env.ACCESS_TOKEN_KEY);
       return artifacts.decoded.payload;
     } catch (error) {
-      throw new InvariantError("access token tidak valid");
+      throw new InvariantError("refresh token tidak ditemukan di data...");
     }
   }
 
@@ -30,7 +30,7 @@ class JwtAuthTokenManager extends AuthTokenManager {
       const artifacts = this._jwt.decode(token);
       this._jwt.verify(artifacts, process.env.REFRESH_TOKEN_KEY);
     } catch (error) {
-      throw new InvariantError("refresh token tidak valid");
+      throw new InvariantError("refresh token tidak di temukan di dat..");
     }
   }
 

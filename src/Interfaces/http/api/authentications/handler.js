@@ -34,7 +34,7 @@ class AuthHandler {
         accessToken: newAccessToken,
       },
     });
-    response.code(201);
+    response.code(200);
     return response;
   }
 
@@ -44,10 +44,8 @@ class AuthHandler {
 
     const response = h.response({
       status: "success",
-      message: "refresh token has been revoked",
     });
 
-    response.code(200);
     return response;
   }
 }

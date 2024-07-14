@@ -1,4 +1,5 @@
 const InvariantError = require("../../Commons/exceptions/InvariantError");
+const NotFoundError = require("../../Commons/exceptions/NotFoundError");
 const AuthenticationRepository = require("../../Domains/authentication/AuthenticationRepository");
 
 class AuthenticationRepositoryPostgres extends AuthenticationRepository {
@@ -23,7 +24,7 @@ class AuthenticationRepositoryPostgres extends AuthenticationRepository {
     const result = await this._pool.query(query);
 
     if (!result.rows.length) {
-      throw new InvariantError("token not found");
+      throw new NotFoundError("token not found");
     }
   }
 

@@ -131,7 +131,7 @@ describe("AuthUseCase", () => {
       mockTokenManager.verifyRefreshToken = jest
         .fn()
         .mockImplementation(() =>
-          Promise.reject(new Error("refresh token tidak valid"))
+          Promise.reject(new Error("refresh token tidak ditemukan di data..."))
         );
 
       // create use case instance
@@ -144,7 +144,7 @@ describe("AuthUseCase", () => {
 
       await expect(
         authUseCase.renewRefreshToken({ refreshToken })
-      ).rejects.toThrowError("refresh token tidak valid");
+      ).rejects.toThrowError("refresh token tidak ditemukan di data...");
     });
   });
 
@@ -183,7 +183,7 @@ describe("AuthUseCase", () => {
       mockTokenManager.verifyRefreshToken = jest
         .fn()
         .mockImplementation(() =>
-          Promise.reject(new Error("refresh token tidak valid"))
+          Promise.reject(new Error("refresh token tidak ditemukan di data..."))
         );
 
       // create use case instance
@@ -196,7 +196,7 @@ describe("AuthUseCase", () => {
       // Action
 
       await expect(authUseCase.logout({ refreshToken })).rejects.toThrowError(
-        "refresh token tidak valid"
+        "refresh token tidak ditemukan di data..."
       );
     });
   });

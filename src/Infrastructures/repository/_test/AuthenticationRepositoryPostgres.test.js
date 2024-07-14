@@ -1,5 +1,6 @@
 const AuthenticationsTableTestHelper = require("../../../../tests/AuthenticationsTableTestHelper");
 const InvariantError = require("../../../Commons/exceptions/InvariantError");
+const NotFoundError = require("../../../Commons/exceptions/NotFoundError");
 const pool = require("../../database/postgres/pool");
 const AuthenticationRepositoryPostgres = require("../AuthenticationRepositoryPostgres");
 
@@ -31,14 +32,14 @@ describe("AuthenticationRepositoryPostgres", () => {
   });
 
   describe("verifyToken function", () => {
-    it("should throw InvariantError if token not available", async () => {
+    it("should throw not found if token not available", async () => {
       const token = "asdfasdfdsaasdf";
       const authenticationRepositoryPostgres =
         new AuthenticationRepositoryPostgres(pool, {});
 
       await expect(
         authenticationRepositoryPostgres.verifyToken(token)
-      ).rejects.toThrowError(InvariantError);
+      ).rejects.toThrowError(NotFoundError);
     });
 
     it("should not throw InvariantError if token available", async () => {

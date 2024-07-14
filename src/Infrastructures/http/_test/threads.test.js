@@ -10,11 +10,11 @@ describe("/threads endpoint", () => {
     await pool.end();
   });
 
-  //   afterEach(async () => {
-  //     await ThreadsTableTestHelper.cleanTable();
-  //     await UsersTableTestHelper.cleanTable();
-  //     await AuthenticationsTableTestHelper.cleanTable();
-  //   });
+  afterEach(async () => {
+    await ThreadsTableTestHelper.cleanTable();
+    await UsersTableTestHelper.cleanTable();
+    await AuthenticationsTableTestHelper.cleanTable();
+  });
 
   describe("when POST /threads", () => {
     const getAccessToken = async (server) => {
@@ -62,90 +62,89 @@ describe("/threads endpoint", () => {
 
       // Assert
       const responseJson = JSON.parse(response.payload);
+
       expect(response.statusCode).toEqual(201);
       expect(responseJson.status).toEqual("success");
       expect(responseJson.data.addedThread).toBeDefined();
       expect(responseJson.data.addedThread.title).toEqual(requestPayload.title);
     });
 
-    // it("should response 400 if thread payload not contain needed property", async () => {
-    //   // Arrange
-    //   const requestPayload = { title: "A thread" };
-    //   const server = await createServer(container);
+    it("should response 400 if thread payload not contain needed property", async () => {
+      // Arrange
+      const requestPayload = { title: "A thread" };
+      const server = await createServer(container);
 
-    //   const accessToken = await getAccessToken(server);
+      const accessToken = await getAccessToken(server);
 
-    //   // Action
-    //   const response = await server.inject({
-    //     method: "POST",
-    //     url: "/threads",
-    //     payload: requestPayload,
-    //     headers: { Authorization: `Bearer ${accessToken}` },
-    //   });
+      // Action
+      const response = await server.inject({
+        method: "POST",
+        url: "/threads",
+        payload: requestPayload,
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
 
-    //   // Assert
-    //   const responseJson = JSON.parse(response.payload);
-    //   expect(response.statusCode).toEqual(400);
-    //   expect(responseJson.status).toEqual("fail");
-    //   expect(responseJson.message).toEqual(
-    //     "tidak dapat membuat thread baru karena properti yang dibutuhkan tidak ada"
-    //   );
-    // });
+      // Assert
+      const responseJson = JSON.parse(response.payload);
+      expect(response.statusCode).toEqual(400);
+      expect(responseJson.status).toEqual("fail");
+      expect(responseJson.message).toEqual(
+        "tidak dapat membuat thread baru karena properti yang dibutuhkan tidak ada"
+      );
+    });
 
-    // it("should response 400 if thread payload wrong data type", async () => {
-    //   // Arrange
-    //   const requestPayload = {
-    //     title: 1234,
-    //     body: "A long thread",
-    //   };
-    //   const server = await createServer(container);
+    it("should response 400 if thread payload wrong data type", async () => {
+      // Arrange
+      const requestPayload = {
+        title: 1234,
+        body: "A long thread",
+      };
+      const server = await createServer(container);
 
-    //   const accessToken = await getAccessToken(server);
+      const accessToken = await getAccessToken(server);
 
-    //   // Action
-    //   const response = await server.inject({
-    //     method: "POST",
-    //     url: "/threads",
-    //     payload: requestPayload,
-    //     headers: { Authorization: `Bearer ${accessToken}` },
-    //   });
+      // Action
+      const response = await server.inject({
+        method: "POST",
+        url: "/threads",
+        payload: requestPayload,
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
 
-    //   // Assert
-    //   const responseJson = JSON.parse(response.payload);
-    //   expect(response.statusCode).toEqual(400);
-    //   expect(responseJson.status).toEqual("fail");
-    //   expect(responseJson.message).toEqual(
-    //     "tidak dapat membuat thread baru karena tipe data tidak sesuai"
-    //   );
-    // });
+      // Assert
+      const responseJson = JSON.parse(response.payload);
+      expect(response.statusCode).toEqual(400);
+      expect(responseJson.status).toEqual("fail");
+      expect(responseJson.message).toEqual(
+        "tidak dapat membuat thread baru karena tipe data tidak sesuai"
+      );
+    });
 
-    // it("should response 401 if headers not contain access token", async () => {
-    //   // Arrange
-    //   const requestPayload = {
-    //     title: "A thread",
-    //     body: "A long thread",
-    //   };
-    //   const server = await createServer(container);
+    it("should response 401 if headers not contain access token", async () => {
+      // Arrange
+      const requestPayload = {
+        title: "A thread",
+        body: "A long thread",
+      };
+      const server = await createServer(container);
 
-    //   // Action
-    //   const response = await server.inject({
-    //     method: "POST",
-    //     url: "/threads",
-    //     payload: requestPayload,
-    //   });
+      // Action
+      const response = await server.inject({
+        method: "POST",
+        url: "/threads",
+        payload: requestPayload,
+      });
 
-    //   // Assert
-    //   expect(response.statusCode).toEqual(401);
-    // });
+      // Assert
+      expect(response.statusCode).toEqual(401);
+    });
   });
 
   describe("when GET /threads/{threadId}", () => {
     it("should response 200 and thread detail", async () => {
-      // Arrange
       const threadId = "thread-123tt";
       const server = await createServer(container);
 
-      // add user
       await UsersTableTestHelper.addUser({
         id: "user-123tt",
         username: "asdfasdf",
@@ -156,15 +155,11 @@ describe("/threads endpoint", () => {
         userId: "user-123tt",
       });
 
-      // Action
       const response = await server.inject({
         method: "GET",
         url: `/threads/${threadId}`,
       });
 
-      //   console.log("response", response);
-
-      // Assert
       const responseJson = JSON.parse(response.payload);
       expect(response.statusCode).toEqual(200);
       expect(responseJson.status).toEqual("success");

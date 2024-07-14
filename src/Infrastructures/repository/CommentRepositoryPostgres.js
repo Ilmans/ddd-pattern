@@ -1,3 +1,4 @@
+const NotFoundError = require("../../Commons/exceptions/NotFoundError");
 const CommentRepository = require("../../Domains/comments/CommentRepository");
 const AddedComments = require("../../Domains/comments/entities/AddedComments");
 
@@ -29,7 +30,7 @@ class CommentRepositoryPostgres extends CommentRepository {
     };
     const result = await this._pool.query(query);
     if (!result.rows.length) {
-      throw new Error("comment not found");
+      throw new NotFoundError("comment not found");
     }
     return result.rows[0];
   }

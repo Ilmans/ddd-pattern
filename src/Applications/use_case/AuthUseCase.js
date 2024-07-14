@@ -47,7 +47,6 @@ class AuthUseCase {
     const { refreshToken } = payload;
     await this._authManager.verifyRefreshToken(refreshToken);
     await this._authRepository.deleteToken(refreshToken);
-    return;
   }
 
   // verify token

@@ -7,7 +7,7 @@ const NewThread = require("../../../Domains/threads/entities/NewThread");
 const RegisteredThread = require("../../../Domains/threads/entities/RegisteredThread");
 
 describe("ThreadRepositoryPostgres", () => {
-  beforeEach(async () => {
+  afterEach(async () => {
     await ThreadsTableTestHelper.cleanTable();
     await UsersTableTestHelper.cleanTable();
   });
@@ -29,7 +29,7 @@ describe("ThreadRepositoryPostgres", () => {
 
     it("should not throw NotFoundError when thread available", async () => {
       // Arrange
-      const userId = "user-123";
+      const userId = "user-12367";
       const threadId = "thread-123";
 
       await UsersTableTestHelper.addUser({ id: userId });
@@ -84,7 +84,7 @@ describe("ThreadRepositoryPostgres", () => {
 
       // Action
       const addedThread = await threadRepositoryPostgres.create(
-        "user-123",
+        "user-12388",
         newThread
       );
 
@@ -93,7 +93,7 @@ describe("ThreadRepositoryPostgres", () => {
         new RegisteredThread({
           id: "thread-123",
           title: "A thread",
-          user_id: "user-123",
+          user_id: "user-12388",
         })
       );
     });
